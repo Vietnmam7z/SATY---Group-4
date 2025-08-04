@@ -11,4 +11,9 @@ I. OHSTEM CODE
 6. Bấm nút Boot để chạy code vào Yolo UNO.
 II. Web server (Không bắt buộc)
 1. Chạy thonny và kết nối với esp32 hoặc Yolo UNO hoặc các thiết bị vi điều khiển hỗ trợ MicroPython.
-2. Upload các file trong thư mục
+2. Update lại tên Wifi và mật khẩu trong file tram_4_server.py ở dòng 12 và 13.
+<img width="270" height="40" alt="image" src="https://github.com/user-attachments/assets/da4e7502-743a-4266-8601-5f13d193e718" />
+3. Upload các file trong thư mục webserver và thiết bị.
+4. Chạy chương trình (Nếu báo lỗi thì thử chạy lại)
+5. Sẽ có 1 thông báo in ra IP nếu chạy thành công, ta sẽ dùng ip đó paste vào trình duyệt web của thiết bị chạy chung mạng để truy cập web.
+
