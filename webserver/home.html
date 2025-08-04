@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMART FARM</title>
+  <link rel="stylesheet" href="/home.css" />
+  <script defer src="/home.js"></script>
+</head>
+<body>
+  <div id="rotate-notice">
+    <video autoplay loop muted playsinline style="width: 200px; height: auto;">
+      <source src="https://cdn.pixabay.com/video/2024/11/09/240570_large.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+  </div>
+  <div id="top-left-logo">
+    <a href="https://saty.vn" target="_blank" rel="noopener">
+      <img src="https://saty.vn/wp-content/uploads/2024/06/White-saty-1.png" alt="SATY Logo">
+    </a>
+  </div>
+
+  <div id="top-right-note" onclick="togglePanel()">NHÓM 4</div>
+
+  <div id="credentials-panel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #f1f1f1; padding: 20px; border-radius: 8px; z-index: 1001; box-shadow: 0 2px 12px rgba(0,0,0,0.2);">
+    <label for="jwt">JWT Token:</label><br>
+    <input type="text" id="jwt" placeholder="Nhập JWT token"><br><br>
+    <label for="device_id">Device ID:</label><br>
+    <input type="text" id="device_id" placeholder="Nhập Device ID"><br><br>
+    <button onclick="updateApi()">Xác nhận</button>
+  </div>
+
+  <div class="nav-buttons">
+    <div class="nav-row">
+      <span class="nav-label">Trang chủ</span>
+      <button onclick="scrollToPage('page1')" id="dot1"></button>
+    </div>
+    <div class="nav-row">
+      <span class="nav-label">Giới thiệu</span>
+      <button onclick="scrollToPage('page2')" id="dot2"></button>
+    </div>
+    <div class="nav-row">
+      <span class="nav-label">Cảm biến</span>
+      <button onclick="scrollToPage('page3')" id="dot3"></button>
+    </div>
+  </div>
+
+  <section class="page" id="page1">
+    <h1 class="smartfarm float-in" id="smartfarm">SMART FARM</h1>
+    <h2 class="welcome float-in" id="welcome">WELCOME</h2>
+    <span class="scroll-arrow">↓</span>
+  </section>
+
+  <section class="page" id="page2">
+    <div class="half-panel">
+      <h2 class="device-heading slideInFromLeft" id="device-heading">GIỚI THIỆU THIẾT BỊ</h2>
+      <p class="device-info float-in" id="device-info">Cảm biến đo mức nước bằng sóng siêu âm sử dụng nguyên lý phản xạ của sóng âm để xác định khoảng cách từ đầu dò đến bề mặt chất lỏng. Qua đó, tính toán chính xác mực chất lỏng.</p>
+      <div class="sub-panel" id="panel1">
+        <div class="panel-title">Không tiếp xúc trực tiếp</div>
+        <div class="panel-content">Tránh mài mòn và ăn mòn từ chất lỏng.</div>
+      </div>
+      <div class="sub-panel" id="panel2">
+        <div class="panel-title">Độ chính xác cao</div>
+        <div class="panel-content">Hoạt động ổn định ngay cả khi nước có sóng hoặc bọt nhẹ.</div>
+      </div>
+      <div class="sub-panel" id="panel3">
+        <div class="panel-title">Dễ lắp đặt và bảo trì</div>
+        <div class="panel-content">Không cần tiếp xúc trực tiếp với nước, chỉ cần gắn trên thành bồn hoặc nắp bể.</div>
+      </div>
+      <div class="sub-panel" id="panel4">
+        <div class="panel-title">Ứng dụng rộng rãi</div>
+        <div class="panel-content">Trong hệ thống cấp nước, trạm bơm, bể xử lý nước thải, nông nghiệp thông minh...</div>
+      </div>
+    </div>
+    <div class="content-right">
+      <div class="circle-panel">
+        <img src="/image.png" alt="Cảm biến" class="circle-img" />
+      </div>
+    </div>
+    <span class="scroll-arrow black">↓</span>
+  </section>
+
+  <section class="page" id="page3">
+    <h2>Thông tin thiết bị</h2>
+    <div class="card">
+      <div class="circle-grid">
+        <div id="panel-temperature" class="your-panel-class bounce-in">
+          <div class="circle-indicator">
+            <div id="background-temperature" class="background"></div>
+            <span id="temperature" class="value">--</span>
+          </div>
+          <div class="circle-label">Nhiệt độ</div>
+        </div>
+
+        <div id="panel-voltage" class="your-panel-class bounce-in">
+          <div class="circle-indicator">
+            <div id="background-voltage" class="background"></div>
+            <span id="voltage" class="value">--</span>
+          </div>
+          <div class="circle-label">Điện áp</div>
+        </div>
+
+        <div id="panel-operating-time" class="your-panel-class bounce-in">
+          <div class="circle-indicator">
+            <div class="time-bubble day">Ngày</div>
+            <div class="time-bubble hour">Giờ</div>
+            <div class="time-bubble minute">Phút</div>
+            <div class="time-bubble second">Giây</div>
+            <div id="background-operating-time" class="background"></div>
+            <div id="operating_time" class="value"></div>
+          </div>
+          <div class="circle-label">Thời gian hoạt động</div>
+        </div>
+
+        <div id="panel-level" class="your-panel-class bounce-in">
+          <div class="circle-indicator">
+            <div id="background-level" class="background-video background">
+              <img src="https://i.postimg.cc/W3CSV5FT/Video-S-n-S-ng.gif" class="placeholder" alt="Water Sensor GIF" />
+            </div>
+            <span id="level" class="value">--</span>
+          </div>
+          <div class="circle-label">Khoảng cách đo</div>
+        </div>
+
+        <div id="panel-liquid-level" class="your-panel-class bounce-in">
+          <div class="circle-indicator">
+            <div id="background-liquid-level" class="background">
+              <div class="ocean-wrapper">
+                <svg class="Wave" viewBox="0 0 12960 1120" preserveAspectRatio="none">
+                  <path d="M9720,320C8100,320,8100,0,6480,0S4860,320,3240,320,1620,0,0,0V1120H12960V0C11340,0,11340,320,9720,320Z">
+                    <animate dur="5s" repeatCount="indefinite" attributeName="d" values="M9720,320C8100,320,8100,0,6480,0S4860,320,3240,320,1620,0,0,0V1120H12960V0C11340,0,11340,320,9720,320Z;M9720,0C8100,0,8100,319,6480,319S4860,0,3240,0,1620,320,0,320v800H12960V320C11340,320,11340,0,9720,0Z;M9720,320C8100,320,8100,0,6480,0S4860,320,3240,320,1620,0,0,0V1120H12960V0C11340,0,11340,320,9720,320Z" />
+                  </path>
+                </svg>
+              </div>
+            </div>
+            <span id="liquid_level" class="value">--</span>
+          </div>
+          <div class="circle-label">Mực nước</div>
+        </div>
+
+        <div id="panel-mounting-height" class="your-panel-class bounce-in">
+          <div class="circle-indicator">
+            <div id="background-mounting-height" class="background"></div>
+            <div class="ruler-wrapper"></div>
+            <span id="mounting_height" class="value">--</span>
+          </div>
+          <div class="circle-label">Chiều cao lắp</div>
+        </div>
+      </div>
+    </div>
+
+      </section>
+</body>
+    </html>

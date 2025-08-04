@@ -1,0 +1,927 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: auto;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.page {
+  height: 100vh;
+  width: 100vw;
+  background: url('https://myriota.lbcdn.io/uploads/Soil-Moisture-monitoring.png') center center / cover no-repeat fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+#page2 {
+  background: #78BE00;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 60px;
+  gap: 40px;
+  perspective: 800px;
+}
+
+#page2 .half-panel {
+  height: 100%;
+  width: 48%;
+  background-color: #f3f3f3;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.device-info {
+  font-size: 1em;
+  text-align: left;
+  line-height: 1.6;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.device-heading {
+  font-size: 2.6em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #78BE00;
+}
+
+.sub-panel {
+  background-color: #78BE00;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.panel-title {
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+  color: white;
+  text-align: left;
+}
+
+.panel-content {
+  font-size: 0.7em;
+  line-height: 1.6;
+  color: white;
+  text-align: left;
+}
+
+#page2 .content-right {
+  height: 100%;
+  width: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-panel {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.circle-img {
+  mask-image: radial-gradient(circle, black 60%, transparent 100%);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  transition: transform 0.4s ease, mask-image 0.4s ease;
+  transform: scale(1);
+}
+
+#page3 {
+  background: url('https://www2.thesaigontimes.vn/wp-content/uploadsgtt/2022/08/Ho-Seo-My-Ty-2222.jpg') center center / cover no-repeat fixed;
+  color: white;
+}
+
+.circle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 32px;
+  padding: 32px;
+  justify-items: center;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.circle-indicator {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.circle-indicator .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: white;
+  z-index: 0;
+  transition: filter 0.4s ease;
+  overflow: hidden;
+}
+
+.circle-indicator .value {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 4;
+}
+
+#operating_time {
+  line-height: 0.8;
+}
+
+.line1 {
+  text-align: left;
+  font-size: 40px;
+}
+
+.line2 {
+  text-align: left;
+  font-size: 40px;
+}
+
+.line3 {
+  font-size: 20px;
+  float: right;
+  position: relative;
+}
+
+#background-operating-time {
+  background-image: url("https://i.postimg.cc/vHpC8LPD/Copilot-20250725-192310.png");
+  background-size: 128% 128%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+}
+
+#panel-operating-time .time-bubble {
+  pointer-events: none;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: url("https://i.postimg.cc/mtym8MWG/Copilot-20250725-192310.png");
+  background-size: 128% 128%;
+  background-position: center;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.ocean-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 600px;
+  height: 200px;
+  background-color: #B3E5FC;
+  overflow: hidden;
+}
+
+.Wave {
+  width: 3000px;
+  height: 50%;
+  animation-name: swell;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transition: height 1.5s ease-out;
+  fill: #4FC3F7;
+}
+
+.day {
+  top: -50px;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.hour {
+  top: 80px;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.minute {
+  top: 210px;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.second {
+  top: 340px;
+  left: 100%;
+  margin-left: 10px;
+}
+
+#voltage {
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 1.8em;
+  opacity: 1;
+  text-shadow: 0 0 8px #FFD700, 0 0 16px #FFA500, 0 0 32px #FF8C00, 0 0 48px white, 0 0 64px #FFFFE0;
+}
+
+#background-mounting-height {
+  background-color: #FFFF95;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.ruler-wrapper {
+  width: 200px;
+  height: 200px;
+  background-image: url('https://i.postimg.cc/CLhr0bD9/snapedit-1753504202402.png');
+  background-size: cover;
+  background-position: top;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  transition: transform 0.5s ease;
+  transform-origin: top;
+  cursor: pointer;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#credentials-panel {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#panel-operating-time:hover .time-bubble {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.circle-indicator:hover {
+  transform: scale(1.05);
+}
+
+.circle-indicator:hover .value {
+  transform: scale(1.5);
+}
+
+.circle-indicator:hover .background {
+  filter: blur(30px);
+}
+
+.ruler-wrapper:hover {
+  transform: scaleY(2) scaleX(1.5);
+}
+
+#top-left-logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+}
+
+#top-left-logo img {
+  height: 32px;
+  width: auto;
+}
+
+#top-right-note {
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  z-index: 1001;
+}
+
+.welcome {
+  font-size: 6em;
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+.smartfarm {
+  font-size: 2.2em;
+  margin-top: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.float-in {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.float-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floatBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    translate: -80px 0;
+  }
+
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    translate: 0 100%;
+  }
+
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: translateY(200px);
+    opacity: 0;
+    scale: 0.9;
+  }
+
+  60% {
+    transform: translateY(-100px);
+    opacity: 1;
+    scale: 1.1;
+  }
+
+  80% {
+    transform: translateY(5px);
+    scale: 0.98;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.circle-img.animate-in {
+  animation: floatUp 0.6s ease-out forwards;
+  will-change: translate, opacity;
+}
+
+.intro-text {
+  animation: slideInFromLeft 1.2s ease-out;
+  animation-fill-mode: both;
+  will-change: translate, opacity;
+}
+
+.bounce-in {
+  animation: bounceIn 0.9s ease-out forwards;
+}
+
+.circle-img.show {
+  animation: floatUp 0.5s ease-out forwards;
+  will-change: opacity, translate;
+}
+
+#panel-operating-time:hover .time-bubble.hour {
+  animation: dropHour 0.2s ease-out forwards;
+}
+
+#panel-operating-time:hover .time-bubble.minute {
+  animation: dropMinute 0.3s ease-out forwards;
+}
+
+#panel-operating-time:hover .time-bubble.second {
+  animation: dropSecond 0.4s ease-out forwards;
+}
+
+@keyframes dropHour {
+  0% {
+    top: -50px;
+    left: 100%;
+    margin-left: 10px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 80px;
+    left: 100%;
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+
+@keyframes dropMinute {
+  0% {
+    top: -50px;
+    left: 100%;
+    margin-left: 10px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 210px;
+    left: 100%;
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+
+@keyframes dropSecond {
+  0% {
+    top: -50px;
+    left: 100%;
+    margin-left: 10px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 340px;
+    left: 100%;
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+
+@keyframes swell {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.wave-layer {
+  transition: height 1.5s ease-out;
+}
+
+.wave-layer.lowering {
+  transition: height 0.8s ease-in;
+}
+
+.circle-panel:hover {
+  overflow: visible;
+}
+
+.circle-img:hover {
+  transform: scale(1.5) translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.sub-panel:hover {
+  transform: rotateY(10deg) scale(1.03);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+.scroll-arrow {
+  font-size: 2.4em;
+  color: white;
+  user-select: none;
+  cursor: default;
+  transition: color 0.3s ease;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  animation: floatBounce 1.2s ease-in-out infinite;
+  transform: translateX(-50%);
+}
+
+.scroll-arrow.black {
+  font-size: 2.4em;
+  color: black;
+  user-select: none;
+  cursor: default;
+  transition: color 0.3s ease;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  animation: floatBounce 1.2s ease-in-out infinite;
+  transform: translateX(-50%);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  max-width: 1100px;
+  width: 90%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.label {
+  font-weight: 400;
+}
+
+.nav-buttons {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 14px;
+  z-index: 1000;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-label {
+  font-size: 1em;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.nav-row button {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-row button.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+}
+
+.nav-buttons.green-theme .nav-label {
+  color: black;
+  text-shadow: none;
+}
+
+.nav-buttons.green-theme .nav-row button {
+  border: 2px solid black;
+}
+
+.nav-buttons.green-theme .nav-row button.active::after {
+  background-color: black;
+}
+
+@media screen and (max-device-width: 820px) and (orientation: landscape) {
+  .smartfarm {
+    font-size: 1.4em;
+    margin-top: 10px;
+  }
+
+  .welcome {
+    font-size: 2.4em;
+    letter-spacing: 2px;
+  }
+
+  .scroll-arrow {
+    font-size: 1.4em;
+    bottom: 10px;
+  }
+
+  .page {
+    padding: 0 12px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media screen and (max-device-width: 820px) and (orientation: landscape) {
+  #page2 {
+    padding: 4px;
+    gap: 4px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  #page2 .half-panel {
+    width: 46%;
+    padding: 4px;
+    box-sizing: border-box;
+    transform: translateY(45px);
+  }
+
+  #page2 .content-right {
+    width: 46%;
+    padding: 4px;
+  }
+
+  .device-heading {
+    font-size: 0.75em;
+    margin-bottom: 2px;
+  }
+
+  .device-info,
+  .panel-content {
+    font-size: 0.55em;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+
+  .sub-panel {
+    padding: 2px 6px;
+    font-size: 0.55em;
+    margin-bottom: 2px;
+  }
+
+  .circle-panel {
+    width: 140px;
+    height: 140px;
+  }
+
+  .circle-img {
+    transform: scale(0.78);
+  }
+
+  .scroll-arrow {
+    font-size: 0.85em;
+    bottom: 6px;
+  }
+}
+
+@media screen and (max-device-width: 820px) and (orientation: landscape) {
+  #page3 {
+    height: 100hv;
+    width: 100vw;
+    transform-origin: top center;
+    overflow: hidden;
+    padding: 6px 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .card,
+  .circle-indicator,
+  .ruler-wrapper {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .wave {
+    width: 6000px;
+  }
+
+  .card {
+    padding: 12px 10px;
+    max-width: 280px;
+    max-height: 500px;
+    font-size: 0.4em;
+  }
+
+  .circle-indicator,
+  .ruler-wrapper {
+    height: 36px;
+  }
+
+  .row {
+    font-size: 0.1em;
+    margin-bottom: 2px;
+  }
+
+  #voltage {
+    font-size: 0.6em;
+    text-align: center;
+    text-shadow: none;
+  }
+
+  #panel-temperature .circle-indicator,
+  #panel-voltage .circle-indicator,
+  #panel-operating-time .circle-indicator,
+  #panel-operating-time .time-bubble,
+  #panel-level .circle-indicator,
+  #panel-liquid-level .circle-indicator {
+    height: 36px;
+    width: 36px;
+  }
+
+  #panel-temperature .value,
+  #panel-voltage .value,
+  #panel-operating-time .time-bubble,
+  #panel-level .value,
+  #panel-mounting-height .value,
+  #panel-liquid-level .value {
+    font-size: 0.8em;
+  }
+
+  #panel-temperature .circle-label,
+  #panel-voltage .circle-label,
+  #panel-operating-time .circle-label,
+  #panel-operating-time .time-bubble,
+  #panel-level .circle-label,
+  #panel-liquid-level .circle-label {
+    font-size: 0.75em;
+    text-align: center;
+  }
+
+  #operating_time {
+    line-height: 0.2;
+  }
+
+  .line1,
+  .line2 {
+    font-size: 0.3em;
+    line-height: 0.1;
+    text-align: left;
+    display: block;
+  }
+
+  .line3 {
+    font-size: 0.2em;
+    line-height: 0.1;
+    float: right;
+    position: relative;
+  }
+
+  .day {
+    top: -30px;
+    left: 100%;
+    margin-left: 10px;
+  }
+
+  @keyframes dropHour {
+    0% {
+      top: -30px;
+      left: 100%;
+      margin-left: 10px;
+      opacity: 0;
+    }
+
+    100% {
+      top: 5px;
+      left: 100%;
+      margin-left: 10px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes dropMinute {
+    0% {
+      top: -30px;
+      left: 100%;
+      margin-left: 10px;
+      opacity: 0;
+    }
+
+    100% {
+      top: 40px;
+      left: 100%;
+      margin-left: 10px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes dropSecond {
+    0% {
+      top: -30px;
+      left: 100%;
+      margin-left: 10px;
+      opacity: 0;
+    }
+
+    100% {
+      top: 75px;
+      left: 100%;
+      margin-left: 10px;
+      opacity: 1;
+    }
+  }
+}
+
+#rotate-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+video {
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+}
+
+
+
